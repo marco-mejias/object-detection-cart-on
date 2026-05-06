@@ -1,3 +1,4 @@
+cat > requirements.txt << 'EOF'
 # =============================================================================
 # Requisitos del proyecto - Detección híbrida de productos en supermercado
 # =============================================================================
@@ -6,7 +7,6 @@
 # --- Core ---
 numpy>=1.24,<2.0
 matplotlib>=3.7
-pandas>=2.0
 tqdm>=4.65
 
 # --- Visión por computador clásica ---
@@ -18,18 +18,14 @@ Pillow>=10.0
 scikit-learn>=1.3
 joblib>=1.3
 
-# --- Deep Learning (para F5 en adelante) ---
-# Descomentar cuando se llegue a la fase de DL
+# --- Notebooks ---
+jupyter>=1.0
+notebook>=7.0
+ipykernel>=6.25
+
+# --- Deep Learning (descomentar al llegar a F5) ---
 # torch>=2.0
 # torchvision>=0.15
 # ultralytics>=8.0     # YOLOv8
 # albumentations>=1.3  # Data augmentation
-
-# --- Notebooks ---
-jupyter>=1.0
-ipykernel>=6.25
-ipywidgets>=8.1
-
-# --- Utilidades ---
-pyyaml>=6.0
-python-dotenv>=1.0
+EOF
