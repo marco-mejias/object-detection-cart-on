@@ -1,4 +1,3 @@
-cat > requirements.txt << 'EOF'
 # =============================================================================
 # Requisitos del proyecto - Detección híbrida de productos en supermercado
 # =============================================================================
@@ -23,9 +22,8 @@ jupyter>=1.0
 notebook>=7.0
 ipykernel>=6.25
 
-# --- Deep Learning (descomentar al llegar a F5) ---
-# torch>=2.0
-# torchvision>=0.15
-# ultralytics>=8.0     # YOLOv8
-# albumentations>=1.3  # Data augmentation
-EOF
+# --- Deep Learning (F5: CNN para demo en vivo) ---
+torch>=2.0
+torchvision>=0.15
+# ultralytics>=8.0     # YOLOv8 (opcional, para experimentos futuros)
+# albumentations>=1.3  # Data augmentation alternativo

@@ -303,6 +303,23 @@ def propose_regions(
         )
         all_proposals.extend(boxes)
 
+    # Añadimos detección de bordes (Canny) para separar objetos del fondo
+    # (Muy útil para objetos blancos sobre fondo blanco donde HSV falla)
+    gray = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)
+    blurred = cv2.GaussianBlur(gray, (7, 7), 0)
+    edges = cv2.Canny(blurred, 30, 100)
+    
+    # Dilatamos los bordes para cerrar las siluetas de los objetos
+    kernel_edges = cv2.getStructuringElement(cv2.MORPH_RECT, (kernel_size * 2, kernel_size * 2))
+    closed_edges = cv2.morphologyEx(edges, cv2.MORPH_CLOSE, kernel_edges)
+    
+    boxes_edges = boxes_from_mask(
+        closed_edges, "borde_canny", image_area,
+        min_area_ratio, max_area_ratio,
+        min_aspect, max_aspect,
+    )
+    all_proposals.extend(boxes_edges)
+
     # NMS final para fusionar cajas redundantes entre categorías
     return non_max_suppression(all_proposals, iou_threshold)
 
